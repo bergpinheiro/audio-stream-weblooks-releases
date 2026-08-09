@@ -8,6 +8,23 @@ que está publicando e a usa como nota do release e na janela de
 atualização. **Publicar sem a seção correspondente falha de propósito** —
 uma versão sem nota é uma versão que ninguém sabe se deve instalar.
 
+## 1.1.2
+
+**Botão "verificar atualizações".** Fica em Configurações, ao lado da
+versão. Até aqui a verificação acontecia sozinha uma vez por dia e não
+havia como antecipar — reiniciar o programa não adianta, porque ele só
+consulta quando as 24 horas vencem. Agora é um clique, e ele responde
+mesmo quando não há novidade.
+
+**O nome do programa aparece por extenso.** A janela de atualização e o
+Gerenciador de Tarefas mostravam `audio_stream_weblooks`, o nome do
+arquivo. Agora mostram "Audio Stream WeblookS".
+
+**Reconexão mais rápida quando a internet volta.** O programa espera cada
+vez mais entre as tentativas, até meio minuto — o que evita martelar o
+servidor, mas custava tempo fora do ar quando a conexão voltava logo
+depois. Agora ele percebe a volta e tenta na hora, sem esperar o relógio.
+
 ## 1.1.1
 
 Correção de quatro defeitos que apareceram na emissora ao trocar uma placa

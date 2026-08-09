@@ -5,16 +5,16 @@
     <description>Atualizações do encoder de transmissão</description>
     <language>pt-br</language>
     <item>
-      <title>Versão 1.1.1</title>
-      <pubDate>Sun, 09 Aug 2026 14:34:44 GMT</pubDate>
-      <description><![CDATA[<html><body style="font-family: sans-serif"><p>Correção de quatro defeitos que apareceram na emissora ao trocar uma placa de captura USB de porta e reiniciar o computador.</p><p><b>A placa mudou de porta e o programa não a reconheceu mais.</b> O Windows dá identificador novo quando o aparelho entra por outra porta — o identificador guarda a porta dentro dele. O programa já sabia cair para o nome nesse caso, mas o Windows também mexe no nome: acrescenta <code>2- </code> e enche de espaços. <code>Linha (USB Sound Device)</code> virou <code>Linha (2- USB Sound Device)</code> e deixou de casar. Agora casa.</p><p><b>Entrava no ar sem ter captura.</b> Quando o dispositivo do perfil não é encontrado, o programa tentava transmitir assim mesmo e falhava. Agora recusa antes, e diz por quê.</p><p><b>"Argumento inválido (código -4)" virou mensagem em português.</b> Era o que aparecia quando faltava captura.</p><p><b>Acentos nos nomes dos dispositivos.</b> "Mistura estéreo" aparecia corrompido na lista. Corrigido.</p><p>E quando o dispositivo do perfil realmente não existe mais, o Painel passa a dizer <b>qual</b> faltou, em vez de só pedir para escolher um. O programa não escolhe outro sozinho de propósito: pôr uma fonte diferente no ar sem alguém pedir é pior que ficar fora.</p></body></html>]]></description>
+      <title>Versão 1.1.2</title>
+      <pubDate>Sun, 09 Aug 2026 15:44:20 GMT</pubDate>
+      <description><![CDATA[<html><body style="font-family: sans-serif"><p><b>Botão "verificar atualizações".</b> Fica em Configurações, ao lado da versão. Até aqui a verificação acontecia sozinha uma vez por dia e não havia como antecipar — reiniciar o programa não adianta, porque ele só consulta quando as 24 horas vencem. Agora é um clique, e ele responde mesmo quando não há novidade.</p><p><b>O nome do programa aparece por extenso.</b> A janela de atualização e o Gerenciador de Tarefas mostravam <code>audio_stream_weblooks</code>, o nome do arquivo. Agora mostram "Audio Stream WeblookS".</p><p><b>Reconexão mais rápida quando a internet volta.</b> O programa espera cada vez mais entre as tentativas, até meio minuto — o que evita martelar o servidor, mas custava tempo fora do ar quando a conexão voltava logo depois. Agora ele percebe a volta e tenta na hora, sem esperar o relógio.</p></body></html>]]></description>
       <enclosure
-        url="https://github.com/bergpinheiro/audio-stream-weblooks-releases/releases/download/v1.1.1/AudioStreamWeblookS-1.1.1-setup.exe"
-        sparkle:version="1.1.1"
-        sparkle:shortVersionString="1.1.1"
+        url="https://github.com/bergpinheiro/audio-stream-weblooks-releases/releases/download/v1.1.2/AudioStreamWeblookS-1.1.2-setup.exe"
+        sparkle:version="1.1.2"
+        sparkle:shortVersionString="1.1.2"
         sparkle:os="windows"
-        sparkle:dsaSignature="MDwCHAYRahVF+7HId+C+xfaaVS/6ghQhVAbpPgfGWzwCHHJPHESVgVL+Uv0xe40KzJLVJ67/8EnwgyXJLkc="
-        length="13670764"
+        sparkle:dsaSignature="MD0CHQCGGERo3MxKkJUxWHj8Mhmx76pTdxIdiep2bc/4Ahx6hkwmRHQ0VDyEEMWSABefal7pFvS2hT8dZ1ZW"
+        length="13673129"
         type="application/octet-stream" />
     </item>
   </channel>
