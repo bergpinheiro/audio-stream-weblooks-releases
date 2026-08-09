@@ -23,6 +23,8 @@
   <a href="https://github.com/bergpinheiro/audio-stream-weblooks-releases/releases/latest">
     <strong>⬇&nbsp; Baixar a versão mais recente</strong>
   </a>
+<br>
+  <sub><a href="CHANGELOG.md">o que mudou em cada versão</a></sub>
 </p>
 
 <p align="center">
