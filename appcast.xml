@@ -5,15 +5,15 @@
     <description>Atualizações do encoder de transmissão</description>
     <language>pt-br</language>
     <item>
-      <title>Versão 1.0.0</title>
-      <pubDate>Sat, 08 Aug 2026 16:42:21 GMT</pubDate>
+      <title>Versão 1.1.0</title>
+      <pubDate>Sun, 09 Aug 2026 00:24:52 GMT</pubDate>
       <enclosure
-        url="https://github.com/bergpinheiro/audio-stream-weblooks-releases/releases/download/v1.0.0/AudioStreamWeblookS-1.0.0-setup.exe"
-        sparkle:version="1.0.0"
-        sparkle:shortVersionString="1.0.0"
+        url="https://github.com/bergpinheiro/audio-stream-weblooks-releases/releases/download/v1.1.0/AudioStreamWeblookS-1.1.0-setup.exe"
+        sparkle:version="1.1.0"
+        sparkle:shortVersionString="1.1.0"
         sparkle:os="windows"
-        sparkle:dsaSignature="MD0CHQCU9NLzjBeOkiRJytBjDzhd7RQTGxV1hLXyLINWAhxfV4p+Zdje1NbkFFoSAIRNDaVVYcXqFgwB5S80"
-        length="13632272"
+        sparkle:dsaSignature="MD4CHQCcQU0HoruEBGlcxYGZnTirfpR0/nTyUe8UyNtwAh0AhCa1eY5QxtvHzPEf1UCcFP6H2RFSXpTxMrAcQw=="
+        length="13670884"
         type="application/octet-stream" />
     </item>
   </channel>
