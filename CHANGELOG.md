@@ -8,6 +8,20 @@ que está publicando e a usa como nota do release e na janela de
 atualização. **Publicar sem a seção correspondente falha de propósito** —
 uma versão sem nota é uma versão que ninguém sabe se deve instalar.
 
+## 1.1.3
+
+**A janela de atualização oferecia a mesma versão para sempre.** Depois de
+instalar a 1.1.2, o programa continuava avisando que havia uma
+atualização — e era a 1.1.2 de novo.
+
+A causa: o executável dizia `1.1.2+4`, com o número de compilação no fim,
+e o arquivo de atualização dizia `1.1.2`. Como as duas cadeias diferem, e
+um sufixo assim costuma indicar versão de teste, o programa concluía que a
+instalada era mais antiga.
+
+O número de compilação saiu da cadeia de versão. Ele continua registrado
+no executável, num campo separado que não entra nessa comparação.
+
 ## 1.1.2
 
 **Botão "verificar atualizações".** Fica em Configurações, ao lado da
