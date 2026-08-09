@@ -1,15 +1,33 @@
-# Audio Stream WeblookS
+<p align="center">
+  <img src="docs/logo.png" width="120" alt="Audio Stream WeblookS">
+</p>
 
-Encoder de transmissão para Windows, feito para emissoras que usam
-**Playlist Digital**. Captura o áudio, codifica e envia para Icecast ou
-Shoutcast — e publica sozinho o nome da música que o Playlist grava no
-arquivo TXT.
+<h1 align="center">Audio Stream WeblookS</h1>
 
-**[⬇ Baixar a versão mais recente](https://github.com/bergpinheiro/audio-stream-weblooks-releases/releases/latest)**
+<p align="center">
+  <strong>Encoder de transmissão para Windows, feito para emissoras que usam Playlist Digital.</strong><br>
+  Captura o áudio, codifica e envia para Icecast ou Shoutcast — e publica sozinho<br>
+  o nome da música que o Playlist grava no arquivo TXT.
+</p>
 
-Programa gratuito. Atualiza-se sozinho.
+<p align="center">
+  <a href="https://github.com/bergpinheiro/audio-stream-weblooks-releases/releases/latest">
+    <img src="https://img.shields.io/github/v/release/bergpinheiro/audio-stream-weblooks-releases?label=vers%C3%A3o&color=22c1d6" alt="Versão">
+  </a>
+  <img src="https://img.shields.io/badge/Windows-10%20e%2011-0078d4" alt="Windows 10 e 11">
+  <img src="https://img.shields.io/badge/pre%C3%A7o-gratuito-2ea44f" alt="Gratuito">
+  <img src="https://img.shields.io/badge/atualiza%C3%A7%C3%A3o-autom%C3%A1tica-8957e5" alt="Atualização automática">
+</p>
 
-![Painel](docs/painel.png)
+<p align="center">
+  <a href="https://github.com/bergpinheiro/audio-stream-weblooks-releases/releases/latest">
+    <strong>⬇&nbsp; Baixar a versão mais recente</strong>
+  </a>
+</p>
+
+<p align="center">
+  <img src="docs/painel.png" width="820" alt="Painel do programa, com o botão ON AIR, a música atual e os medidores">
+</p>
 
 ---
 
@@ -179,8 +197,6 @@ codificação **já ligados** — depois é só apertar ON AIR.
 # As telas do programa
 
 ## Painel
-
-![Painel](docs/painel.png)
 
 A tela que fica aberta o dia inteiro. Responde de longe as três perguntas
 que importam ao vivo: estou no ar, está entrando som, e é esta a música que
