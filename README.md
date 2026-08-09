@@ -9,7 +9,7 @@ arquivo TXT.
 
 Programa gratuito. Atualiza-se sozinho.
 
-<!-- PRINT: Painel com ON AIR, música atual e VU -->
+![Painel](docs/painel.png)
 
 ---
 
@@ -36,184 +36,257 @@ Programa gratuito. Atualiza-se sozinho.
 
 > **Sobre o aviso do Windows.** Ele aparece porque o programa não tem
 > certificado de assinatura comprado, que custa algumas centenas de dólares
-> por ano. Não é vírus nem defeito: é reputação. O aviso some sozinho
-> conforme o programa acumula instalações.
+> por ano. Não é vírus nem defeito: é reputação. O aviso some conforme o
+> programa acumula instalações.
 
 Depois de instalado, ele verifica atualizações sozinho e avisa quando há
 versão nova. Sua configuração é preservada.
 
----
-
-## Primeira execução
-
-Na primeira vez abre um assistente de sete passos que cobre o essencial.
-Se preferir configurar na mão, ou refazer depois, é pelas telas abaixo.
-
-<!-- PRINT: primeira tela do assistente -->
+Requisito: Windows 10 ou 11, 64 bits.
 
 ---
 
-## Áudio — de onde vem o som
+# Primeira execução: os sete passos
 
-<!-- PRINT: tela Áudio, com VU e lista de dispositivos -->
+Na primeira vez abre um assistente. São quatro minutos, e ao fim a emissora
+está pronta para entrar no ar.
 
-Escolha o dispositivo e o som já aparece no medidor. Se o VU não se mexe,
-não adianta seguir — nada vai ao ar.
+Em qualquer passo dá para clicar em **Configurar depois** e fazer pelas
+telas normais.
 
-### Qual dispositivo escolher
+## Passo 1 — Bem-vindo
 
-| Sua situação | Escolha |
+![Passo 1](docs/passo01.png)
+
+Só explica o que vem pela frente. Nada aqui é definitivo: tudo pode ser
+mudado depois, e o que você configurar vira um **perfil** no fim.
+
+## Passo 2 — Servidor
+
+![Passo 2](docs/passo02.png)
+
+Os dados vêm da sua hospedagem. Comece pelo **tipo de servidor**, porque
+ele muda o resto da tela:
+
+| Tipo | Quando |
 |---|---|
-| O áudio sai do próprio computador (Playlist Digital tocando) | a **saída** dele, em modo *loopback* |
-| Mesa de som ligada por interface USB | a **interface USB** |
-| Microfone direto no computador | o **microfone** |
+| **Icecast 2** | o mais comum. Atende também Liquidsoap harbor e AzuraCast |
+| **Shoutcast v1** | DNAS antigo |
+| **Shoutcast v2** | DNAS 2. O programa conecta pelo caminho compatível com o v1, que ele aceita |
 
-O modo *loopback* captura exatamente o que o computador está tocando, sem
-cabo de retorno. É o caso mais comum em estúdio com Playlist Digital.
-
-> **Atenção com o loopback:** se nada estiver tocando, ele não entrega
-> nenhum áudio — nem silêncio. O medidor fica parado e parece defeito. Ponha
-> uma música para tocar e confira.
-
-### Ganho
-
-Ajuste para o pico bater na faixa amarela nos momentos mais altos, sem
-entrar no vermelho. Vermelho é distorção, e no ar não tem conserto.
-
-### Formato da captura
-
-| | |
+| Campo | O que é |
 |---|---|
-| **Taxa** | 48 kHz na dúvida. Só mude para 44,1 se sua placa for nativamente 44,1 |
-| **Canais** | **Mono** soa melhor que estéreo no mesmo bitrate em programa só de fala — os bits não se dividem entre dois canais |
+| **Servidor** | o endereço, sem `http://` — por exemplo `radio.exemplo.com.br` |
+| **Porta** | a porta de transmissão que a hospedagem informou |
+| **Ponto de montagem** | só Icecast. Às vezes é só `/`. No Shoutcast o campo é ignorado |
+| **Usuário** | quase sempre `source` |
+| **Senha** | a senha de transmissão |
 
-Fica salvo no perfil, então dá para ter um perfil de jornal em mono e um
-musical em estéreo, trocando por horário.
+> **Se a hospedagem te deu a senha no formato `usuario:senha`**, cole tudo
+> isso no campo de senha e deixe o usuário como `source`. É uma convenção
+> antiga que várias hospedagens ainda usam, e o programa a reconhece.
 
-Com a transmissão no ar esses campos ficam travados: o formato é combinado
-com o servidor na hora de conectar, e mudá-lo por baixo derruba a conexão.
+A senha é guardada **cifrada pelo Windows** e nunca entra no arquivo de
+configuração — nem se você exportar o perfil.
 
----
+Mais abaixo vem a **Identificação**: nome da emissora e gênero, que é o que
+aparece nos diretórios de rádio e no player do ouvinte.
 
-## Servidor — para onde vai o som
+## Passo 3 — Formato
 
-<!-- PRINT: tela Servidor (troque os dados pelos de exemplo antes) -->
+![Passo 3](docs/passo03.png)
 
-Peça estes dados à sua hospedagem:
-
-| Campo | O que é | Exemplo |
+| Codec | Padrão | Quando usar |
 |---|---|---|
-| **Tipo** | Icecast 2, Shoutcast v1 ou v2 | Icecast 2 |
-| **Endereço** | o servidor, sem `http://` | `radio.exemplo.com.br` |
-| **Porta** | a porta de transmissão | `8000` |
-| **Ponto de montagem** | só Icecast; às vezes é só `/` | `/live` |
-| **Usuário** | quase sempre `source` | `source` |
-| **Senha** | a senha de transmissão | — |
+| **AAC+** | 64 kbps | **a recomendação.** Entrega a 64 o que o MP3 precisa de 128 para igualar |
+| **MP3** | 128 kbps | o mais compatível, se algum player antigo reclamar |
+| **Opus** | 64 kbps | excelente, mas nem todo servidor e player aceitam |
+| **Ogg Vorbis** | 128 kbps | alternativa livre ao MP3 |
 
-> **Se a hospedagem só te deu uma senha no formato `usuario:senha`**, ponha
-> tudo isso no campo de senha e deixe o usuário como `source`. É uma
-> convenção antiga que várias hospedagens ainda usam.
+O Shoutcast **não** aceita Opus nem Ogg Vorbis — o programa impede a
+combinação em vez de deixar você descobrir no ar.
 
-**Use o botão Testar antes de ir ao ar.** Ele conecta de verdade e diz o
-que houve, em vez de você descobrir com a emissora fora do ar.
+Sobre o bitrate: mais banda soa melhor e custa mais tráfego dos dois lados,
+o seu de subida e o do ouvinte. Na dúvida, fique no padrão do codec.
 
-A senha é guardada criptografada pelo Windows (DPAPI), nunca em texto.
+## Passo 4 — Playlist Digital
 
-### Codec e bitrate
+![Passo 4](docs/passo04.png)
 
-| Codec | Quando usar |
-|---|---|
-| **AAC+** | melhor qualidade por banda. 64 kbps já soa bem — é a recomendação |
-| **MP3** | o mais compatível. Precisa de 128 kbps para soar equivalente |
-| **Opus** | excelente, mas nem todo servidor e player aceitam |
-| **Ogg Vorbis** | alternativa livre ao MP3 |
-
-Shoutcast **não** aceita Opus nem Vorbis; o programa impede a combinação.
-
----
-
-## Playlist — o nome da música no ar
-
-<!-- PRINT: tela Playlist com pré-visualização -->
-
-Aponte para o arquivo que o Playlist Digital grava, normalmente:
+Aponte para o arquivo que o Playlist grava, normalmente:
 
 ```
 C:\Playlist\pgm\RDS\RDS.txt
 ```
 
-A tela mostra **ao vivo** o que está lendo e como vai ao ar. Confira com
-uma música tocando antes de confiar.
+Clique em **Monitorar este arquivo** e confira as quatro linhas que
+aparecem:
 
-### Ajustes que costumam ser necessários
+| Linha | O que mostra |
+|---|---|
+| **Lido do arquivo** | exatamente o que está no TXT, sem tratamento |
+| **Vai ao ar** | o que o ouvinte vai ver — já limpo |
+| **Artista** e **Música** | como o programa dividiu |
+
+Faça isso **com uma música tocando**. É em dez segundos aqui que você
+descobre se o acervo grava "Artista - Música" ou o contrário.
+
+Se vier trocado, não impede de continuar: o que vai ao ar é a linha
+inteira, e a ordem se inverte depois na tela Playlist.
+
+## Passo 5 — Entrada de áudio
+
+![Passo 5](docs/passo05.png)
+
+Cada dispositivo aparece com o tipo embaixo do nome:
+
+| Tipo | O que é |
+|---|---|
+| **Entrada** | microfone, interface USB, Stereo Mix |
+| **Loopback** | o que o computador está **tocando** naquela saída |
+
+Se o Playlist Digital toca no próprio computador, escolha a **saída em
+modo Loopback** — captura o som sem cabo de retorno.
+
+O medidor no rodapé mostra os canais esquerdo e direito. **Se ele não se
+mexe, não continue** — nada vai ao ar.
+
+> **Cuidado com o loopback:** ele não entrega áudio nenhum quando não há
+> nada tocando — nem silêncio. O medidor fica parado e parece defeito. Ponha
+> uma música e confira.
+
+## Passo 6 — Teste
+
+![Passo 6](docs/passo06.png)
+
+Clique em **Testar conexão**. Ele conecta de verdade no servidor e responde
+em segundos.
+
+Verde significa que endereço, mount e senha estão certos. Se der erro, a
+mensagem diz o que houve — volte um passo e corrija. É muito melhor
+descobrir aqui do que com a emissora fora do ar.
+
+## Passo 7 — Pronto
+
+![Passo 7](docs/passo07.png)
+
+Dê um nome ao perfil. Tudo o que você configurou vira ele, e ele passa a
+ser carregado sozinho a cada abertura, com captura, monitoramento e
+codificação **já ligados** — depois é só apertar ON AIR.
+
+---
+
+# As telas do programa
+
+## Painel
+
+![Painel](docs/painel.png)
+
+A tela que fica aberta o dia inteiro. Responde de longe as três perguntas
+que importam ao vivo: estou no ar, está entrando som, e é esta a música que
+o ouvinte está vendo.
+
+O botão vermelho pulsa quando está no ar — dá para perceber do outro lado
+do estúdio, sem olhar direto. Ao lado dele aparece o tempo no ar, o total
+enviado e, quando o servidor informa, quantos estão ouvindo.
+
+## Áudio
+
+![Áudio](docs/audio.png)
+
+Mesma escolha do passo 5, mais dois ajustes.
+
+**Ganho:** deixe o pico bater no amarelo nos momentos mais altos, sem
+entrar no vermelho. Vermelho é distorção, e no ar não tem conserto.
+
+**Formato da captura:**
+
+| | |
+|---|---|
+| **Taxa** | 48 kHz na dúvida. Só use 44,1 se sua placa for nativamente 44,1 |
+| **Canais** | **mono** soa melhor que estéreo no mesmo bitrate em programa só de fala — os bits não se dividem entre dois canais |
+
+Fica salvo no perfil, então dá para ter um perfil de jornal em mono e um
+musical em estéreo, trocando por horário. Com a transmissão no ar os dois
+ficam travados: o formato é combinado com o servidor na hora de conectar.
+
+## Servidor
+
+![Servidor](docs/servidor.png)
+
+Os mesmos campos do passo 2, mais o botão que coloca no ar. Use o **Testar**
+sempre que mexer em alguma coisa.
+
+## Playlist
+
+![Playlist](docs/playlist.png)
+
+A pré-visualização ao vivo, e os ajustes que o acervo costuma exigir:
 
 | Ajuste | Para quê |
 |---|---|
-| **Ordem** | se aparecer "Música - Artista" invertido, um clique troca |
+| **Ordem** | inverte artista e música num clique |
 | **Remover número da faixa** | tira o `03. ` do começo |
 | **Remover etiquetas** | tira coisas como ` - #Escolhas` do fim |
-| **Lista de supressão** | evita que vinheta e institucional apareçam como nome de música |
+| **Lista de supressão** | evita que vinheta e institucional virem nome de música |
 
-A lista de supressão é a mais importante. Sem ela, quando entra a vinheta o
-ouvinte vê o nome da emissora no lugar da música. Com ela, o programa
-**mantém a última música válida** no ar.
+A **lista de supressão** é a mais importante. Sem ela, quando entra a
+vinheta o ouvinte vê o nome da emissora no lugar da música. Com ela, o
+programa mantém a **última música válida** no ar.
 
-Acentos são tratados automaticamente — "Coração" aparece certo, sem
-configuração.
+Acentos são tratados sozinhos — "Coração" aparece certo, sem configuração.
 
----
+## Processamento
 
-## Processamento — equalizador, compressor e limitador
+![Processamento](docs/processamento.png)
 
-<!-- PRINT: tela Processamento com os ajustes prontos -->
-
-A ordem é fixa e não é opinião: **equalizador → compressor → limitador**. O
+Equalizador, compressor e limitador. A ordem é fixa e não é opinião: o
 compressor precisa reagir ao som já equalizado, e o limitador é o teto
 absoluto antes do encoder.
 
-### Ajustes prontos
-
-| Ajuste | Para |
+| Ajuste pronto | Para |
 |---|---|
 | **Neutro** | não mexe em nada |
-| **Voz** | programa falado — realça a inteligibilidade |
+| **Voz** | programa falado |
 | **Música** | programação musical |
 | **Alto** | mais presença e volume aparente |
 
-Comece por um ajuste pronto e mexa só se precisar. Nas Estatísticas há um
-contador de quantas amostras o limitador segurou — se ele estiver sempre
-trabalhando, é sinal de realce ou compensação além do ponto.
+Comece por um pronto e mexa só se precisar. Nas Estatísticas há um contador
+de quantas amostras o limitador segurou: se ele trabalha o tempo todo, é
+sinal de realce ou compensação além do ponto.
 
-Fica salvo no perfil.
+## Automação
 
----
+![Automação](docs/automacao.png)
 
-## Automação — trocar de perfil por horário
-
-<!-- PRINT: tela Automação com uma regra -->
-
-Serve para o que muda de rotina: programação musical de madrugada em
-bitrate menor, jornal em mono pela manhã, e assim por diante.
-
-Crie um perfil para cada situação e uma regra dizendo quando cada um vale.
-As regras podem ser **diárias** ou por **dia da semana**.
+Para o que muda de rotina: programação musical de madrugada em bitrate
+menor, jornal em mono pela manhã. Crie um perfil para cada situação e uma
+regra dizendo quando cada um vale — **diária** ou por **dia da semana**.
 
 O programa não agenda: ele **confere** a cada meio minuto se o perfil certo
 está no ar. A diferença importa — computador suspenso, relógio mudado ou
 horário de verão não fazem a agenda se perder.
 
----
+## Logs
+
+![Logs](docs/logs.png)
+
+Tudo o que aconteceu: conexões, quedas, trocas de música, erros. Filtre por
+nível (DEBUG, INFO, AVISO, ERRO) ou por área (audio, encoder, streaming,
+metadata…), busque no texto, e exporte para mandar ao suporte.
+
+É a primeira tela a abrir quando algo estranho acontecer.
 
 ## Estatísticas
 
-<!-- PRINT: tela Estatísticas -->
+![Estatísticas](docs/estatisticas.png)
 
 | O que mostra | Como ler |
 |---|---|
 | **Tempo no ar / conexão atual** | seis horas de sessão com dois minutos de conexão = internet caindo |
-| **Bitrate real** | os dentes são normais; ruim é encostar no zero e ficar |
-| **Buffers** | ocupação alta e persistente = alguém não está acompanhando |
-| **Ouvintes** | quantos estão escutando, quando o servidor informa |
+| **Bitrate real** | o que saiu de verdade. Os dentes são normais; ruim é encostar no zero e ficar |
+| **Reconexões** | quantas vezes precisou voltar sozinho |
+| **Buffers** | ocupação alta e persistente significa que alguém não está acompanhando |
 | **Consumo** | memória, handles e GDI subindo em linha reta denunciam problema |
 
 ### Ouvintes
@@ -229,59 +302,46 @@ https://seu-servidor/listen/sua-radio/radio.mp3
 Desse link ele extrai o que precisa. Funciona com Icecast, Shoutcast e
 AzuraCast, e o botão **Testar** diz o que encontrou antes de você salvar.
 
----
-
 ## Configurações
 
-<!-- PRINT: tela Configurações -->
+![Configurações](docs/configuracoes.png)
 
 | Opção | O que faz |
 |---|---|
-| **Perfis** | configurações completas, para trocar de uma vez |
+| **Preparar tudo ao abrir** | liga captura, monitoramento e codificação. Depois é só apertar ON AIR |
 | **Entrar no ar sozinho** | volta ao ar depois de queda de energia, sem ninguém no estúdio |
 | **Iniciar com o Windows** | sobe junto com o computador |
 | **Minimizar para a bandeja** | some da barra de tarefas e fica só o ícone ao lado do relógio |
 
-Com **Entrar no ar sozinho** e **Iniciar com o Windows** ligados, a
-emissora volta sozinha depois de falta de energia. É a configuração
-recomendada para estúdio sem operador de plantão.
+Com **Entrar no ar sozinho** e **Iniciar com o Windows** ligados, a emissora
+volta sozinha depois de falta de energia. É a configuração recomendada para
+estúdio sem operador de plantão.
 
-Ao fim da tela aparece a **versão instalada** — é a primeira coisa que o
-suporte pergunta.
+Abaixo ficam os **perfis** e a **versão instalada** — que é a primeira coisa
+que o suporte pergunta.
 
 ---
 
 ## Quando algo dá errado
 
-**Abra a tela Logs.** Ela registra tudo: conexões, quedas, trocas de música,
-erros. Dá para exportar e enviar para o suporte.
+| Sintoma | Causa provável |
+|---|---|
+| Medidor parado | dispositivo errado, ou loopback sem nada tocando |
+| Não conecta | endereço, porta ou senha — use o botão Testar |
+| Nome da música não muda | caminho do TXT errado, ou o Playlist grava noutro lugar |
+| Vinheta aparece como música | falta a lista de supressão |
+| Áudio picotado | veja Buffers, nas Estatísticas |
+| Ouvintes não aparecem | informe o link público do stream |
 
-Os arquivos ficam em:
+Os arquivos de configuração e os logs ficam em:
 
 ```
 %APPDATA%\AudioStreamWeblooks
 ```
 
-### Problemas comuns
-
-| Sintoma | Causa provável |
-|---|---|
-| VU parado | dispositivo errado, ou loopback sem nada tocando |
-| Não conecta | endereço, porta ou senha — use o botão Testar |
-| Nome da música não muda | caminho do TXT errado, ou o Playlist grava noutro lugar |
-| Vinheta aparece como música | falta a lista de supressão |
-| Áudio picotado | veja Buffers nas Estatísticas |
-| Ouvintes não aparecem | informe o link público do stream |
-
 O programa **reconecta sozinho** quando a internet cai, quando o servidor
 reinicia e quando o dispositivo de áudio é desconectado e recolocado. Não
 precisa ficar de olho.
-
----
-
-## Requisitos
-
-Windows 10 ou 11, 64 bits. Nada além disso.
 
 ---
 
