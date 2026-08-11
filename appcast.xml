@@ -5,16 +5,18 @@
     <description>Atualizações do encoder de transmissão</description>
     <language>pt-br</language>
     <item>
-      <title>Versão 1.1.3</title>
-      <pubDate>Sun, 09 Aug 2026 16:12:40 GMT</pubDate>
-      <description><![CDATA[<html><body style="font-family: sans-serif"><p><b>A janela de atualização oferecia a mesma versão para sempre.</b> Depois de instalar a 1.1.2, o programa continuava avisando que havia uma atualização — e era a 1.1.2 de novo.</p><p>A causa: o executável dizia <code>1.1.2+4</code>, com o número de compilação no fim, e o arquivo de atualização dizia <code>1.1.2</code>. Como as duas cadeias diferem, e um sufixo assim costuma indicar versão de teste, o programa concluía que a instalada era mais antiga.</p><p>O número de compilação saiu da cadeia de versão. Ele continua registrado no executável, num campo separado que não entra nessa comparação.</p></body></html>]]></description>
+      <title>Versão 1.1.4</title>
+      <pubDate>Tue, 11 Aug 2026 03:01:45 GMT</pubDate>
+      <description><![CDATA[<html><body style="font-family: sans-serif"><p>Seis correções e um recurso novo. Cinco das correções são o mesmo assunto: <b>o que acontece quando a placa de som cai</b>.</p><p>### Correções</p><p><b>A placa voltava e o programa não a encontrava mais.</b> Puxar o cabo USB durante a transmissão parava a captura, como esperado. Religar não adiantava: o programa dizia "aguardando" uma vez e nunca mais procurava. Só reiniciando resolvia. Agora ele procura até achar — inclusive quando o Windows devolve o aparelho com o nome mudado, o que acontece ao trocar de porta.</p><p><b>A codificação não voltava junto com a captura.</b> Quando a placa se recuperava sozinha, o áudio voltava a ser capturado mas não a ser codificado. A transmissão então conectava sem ter o que enviar, caía em 20 segundos e recomeçava. Numa madrugada isso deu 183 conexões em uma hora e oitenta minutos fora do ar, sem uma linha de erro no log. Agora a codificação volta junto — e continua parada se foi você quem a parou.</p><p><b>O botão ON AIR liga a captura.</b> Se você parou a captura na tela de Áudio e depois resolveu entrar no ar, o botão não fazia nada. Agora ele liga no dispositivo que já está escolhido no perfil, e só avisa quando esse dispositivo de fato não existe mais na máquina.</p><p><b>Não dá mais para trocar de dispositivo no ar.</b> Era possível parar a captura e escolher outra placa com a transmissão de pé — e o envio parava sem explicação. A tela de Áudio agora fica travada durante a transmissão, pelo mesmo motivo que codec e bitrate já eram.</p><p><b>A automação por horário não rodava.</b> As trocas de perfil agendadas só aconteciam se a tela de Automação tivesse sido aberta em algum momento depois de o programa abrir. Reiniciando o computador, nenhuma acontecia. Agora funciona com o programa na bandeja, e cada troca fica registrada no log.</p><p><b>A tela de Processamento avisa quando o ajuste não está salvo.</b> Os ajustes valem no ar imediatamente, mas só entram no perfil quando você salva em Configurações. Antes não havia nada dizendo isso, e um ajuste demorado se perdia no fechamento sem aviso.</p><p>### Compressão por faixa de frequência</p><p>O compressor podia comprimir o sinal inteiro como um bloco só. Quando o grave do surdo disparava, a voz abaixava junto — em pagode, samba e forró isso é a batida engolindo o locutor.</p><p>Agora o compressor tem dois modos, e o novo separa grave, médio e agudo, comprimindo cada um por conta própria. Medido: com uma faixa a voz cai 12,4 dB quando o grave entra; com três, 0,01 dB.</p><p>Duas predefinições novas usam o recurso:</p><ul><li><b>Rádio ao vivo</b> — para quem fala por cima da música. Aproxima o
+  volume do microfone do volume das faixas sem abafar uma para caber a
+  outra.</li><li><b>Música popular</b> — para acervo percussivo, sem locução por cima.</li></ul><p><b>Atenção a quem usa "Música" ou "Alto":</b> essas duas predefinições mudaram para usar o recurso novo. O seu perfil salvo continua exatamente como está — nada muda sozinho. Mas se você clicar numa delas de novo, vai ouvir o ajuste novo.</p><p>Quem não mexer em nada não percebe diferença: o modo de três faixas vem desligado, e perfis salvos por versões anteriores abrem com ele desligado.</p></body></html>]]></description>
       <enclosure
-        url="https://github.com/bergpinheiro/audio-stream-weblooks-releases/releases/download/v1.1.3/AudioStreamWeblookS-1.1.3-setup.exe"
-        sparkle:version="1.1.3"
-        sparkle:shortVersionString="1.1.3"
+        url="https://github.com/bergpinheiro/audio-stream-weblooks-releases/releases/download/v1.1.4/AudioStreamWeblookS-1.1.4-setup.exe"
+        sparkle:version="1.1.4"
+        sparkle:shortVersionString="1.1.4"
         sparkle:os="windows"
-        sparkle:dsaSignature="MD0CHE9YUwHRecif/bfO8fvE1zVrIhGaEtalywQbMBMCHQCXVUC53zR7cgAbK9wclN/RqtiPichYHEsHMGAw"
-        length="13673864"
+        sparkle:dsaSignature="MDwCHDALXJwPMIaHSP+HcdKuTSO5Sp8OJvsPQ0ohmjsCHHb5htRG6nEbEGTFvM3iCw/fgfp9sSdSaKAF3XU="
+        length="13684497"
         type="application/octet-stream" />
     </item>
   </channel>
