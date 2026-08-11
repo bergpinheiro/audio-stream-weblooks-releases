@@ -8,6 +8,74 @@ que está publicando e a usa como nota do release e na janela de
 atualização. **Publicar sem a seção correspondente falha de propósito** —
 uma versão sem nota é uma versão que ninguém sabe se deve instalar.
 
+## 1.1.4
+
+Seis correções e um recurso novo. Cinco das correções são o mesmo
+assunto: **o que acontece quando a placa de som cai**.
+
+### Correções
+
+**A placa voltava e o programa não a encontrava mais.** Puxar o cabo USB
+durante a transmissão parava a captura, como esperado. Religar não
+adiantava: o programa dizia "aguardando" uma vez e nunca mais procurava.
+Só reiniciando resolvia. Agora ele procura até achar — inclusive quando o
+Windows devolve o aparelho com o nome mudado, o que acontece ao trocar de
+porta.
+
+**A codificação não voltava junto com a captura.** Quando a placa se
+recuperava sozinha, o áudio voltava a ser capturado mas não a ser
+codificado. A transmissão então conectava sem ter o que enviar, caía em
+20 segundos e recomeçava. Numa madrugada isso deu 183 conexões em uma
+hora e oitenta minutos fora do ar, sem uma linha de erro no log. Agora a
+codificação volta junto — e continua parada se foi você quem a parou.
+
+**O botão ON AIR liga a captura.** Se você parou a captura na tela de
+Áudio e depois resolveu entrar no ar, o botão não fazia nada. Agora ele
+liga no dispositivo que já está escolhido no perfil, e só avisa quando
+esse dispositivo de fato não existe mais na máquina.
+
+**Não dá mais para trocar de dispositivo no ar.** Era possível parar a
+captura e escolher outra placa com a transmissão de pé — e o envio
+parava sem explicação. A tela de Áudio agora fica travada durante a
+transmissão, pelo mesmo motivo que codec e bitrate já eram.
+
+**A automação por horário não rodava.** As trocas de perfil agendadas só
+aconteciam se a tela de Automação tivesse sido aberta em algum momento
+depois de o programa abrir. Reiniciando o computador, nenhuma acontecia.
+Agora funciona com o programa na bandeja, e cada troca fica registrada no
+log.
+
+**A tela de Processamento avisa quando o ajuste não está salvo.** Os
+ajustes valem no ar imediatamente, mas só entram no perfil quando você
+salva em Configurações. Antes não havia nada dizendo isso, e um ajuste
+demorado se perdia no fechamento sem aviso.
+
+### Compressão por faixa de frequência
+
+O compressor podia comprimir o sinal inteiro como um bloco só. Quando o
+grave do surdo disparava, a voz abaixava junto — em pagode, samba e forró
+isso é a batida engolindo o locutor.
+
+Agora o compressor tem dois modos, e o novo separa grave, médio e agudo,
+comprimindo cada um por conta própria. Medido: com uma faixa a voz cai
+12,4 dB quando o grave entra; com três, 0,01 dB.
+
+Duas predefinições novas usam o recurso:
+
+- **Rádio ao vivo** — para quem fala por cima da música. Aproxima o
+  volume do microfone do volume das faixas sem abafar uma para caber a
+  outra.
+- **Música popular** — para acervo percussivo, sem locução por cima.
+
+**Atenção a quem usa "Música" ou "Alto":** essas duas predefinições
+mudaram para usar o recurso novo. O seu perfil salvo continua exatamente
+como está — nada muda sozinho. Mas se você clicar numa delas de novo,
+vai ouvir o ajuste novo.
+
+Quem não mexer em nada não percebe diferença: o modo de três faixas vem
+desligado, e perfis salvos por versões anteriores abrem com ele
+desligado.
+
 ## 1.1.3
 
 **A janela de atualização oferecia a mesma versão para sempre.** Depois de
