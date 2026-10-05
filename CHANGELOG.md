@@ -8,6 +8,40 @@ que está publicando e a usa como nota do release e na janela de
 atualização. **Publicar sem a seção correspondente falha de propósito** —
 uma versão sem nota é uma versão que ninguém sabe se deve instalar.
 
+## 1.1.5
+
+Uma correção importante e uma melhoria de som.
+
+### Correções
+
+**A transmissão ficava presa tentando reconectar.** Depois de um instante
+de internet lenta, o programa podia entrar num laço: dizia "Conectado",
+caía na mesma hora e tentava de novo, sem parar, até alguém fechar e abrir
+o programa. Na Regional isso acontecia quase todo dia. A causa era do
+próprio programa: num momento de lentidão, ele dava por perdida uma
+conexão que estava boa, mas deixava essa conexão aberta — e o servidor,
+achando que ela ainda transmitia, recusava todas as tentativas seguintes.
+Agora o programa espera a rede lenta em vez de desistir, e quando desiste
+de verdade fecha a conexão por completo.
+
+**Menos insistência contra o servidor.** Quando o servidor recusa várias
+vezes seguidas, o programa passa a esperar cada vez mais entre uma
+tentativa e outra, em vez de tentar a cada segundo e meio. No laço acima
+foram cerca de mil conexões em meia hora contra o servidor da emissora.
+
+**O registro de eventos mostra o motivo verdadeiro das quedas.** "A
+conexão caiu durante o envio" agora vem acompanhado do erro técnico, o
+que ajuda o suporte a separar problema de internet de problema do
+programa. E quando o servidor aceita a senha mas fecha em seguida, o
+registro diz isso, em vez de anunciar "No ar".
+
+### Som
+
+**AAC com mais qualidade no mesmo bitrate.** O codificador AAC passou a
+usar o modo em que testa várias formas de gastar os bits e fica com a
+melhor. O consumo de internet não muda; quem trabalha um pouco mais é o
+processador.
+
 ## 1.1.4
 
 Seis correções e um recurso novo. Cinco das correções são o mesmo
